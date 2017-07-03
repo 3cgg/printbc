@@ -39,7 +39,7 @@ public class EAN13EncoderHandler {
         codeWidth = Math.max(codeWidth, width);
         try {
             BitMatrix bitMatrix = new MultiFormatWriter().encode(contents,
-                    BarcodeFormat.CODE_128, codeWidth, height, null);
+                    BarcodeFormat.PDF_417, codeWidth, height, null);
 
             MatrixToImageWriter
                     .writeToPath(bitMatrix, "png", new File(imgPath).toPath());
@@ -154,6 +154,8 @@ public class EAN13EncoderHandler {
 
             BufferedImage original= MatrixToImageWriter.toBufferedImage(bitMatrix,config);
 
+            height=original.getHeight();
+            codeWidth=original.getWidth();
 
             int realWidth=codeWidth+0;
             int realHeight=height+16;
